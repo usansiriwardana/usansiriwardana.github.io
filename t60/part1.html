@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light dark">
+
+<title>ThinkPad T60: Part 1 - Usan Siriwardana</title>
+
+<link rel="stylesheet" href="/style.css">
+
+<article>
+    	<header>
+        	<h1>Usan Siriwardana's Projects</h1>
+    		<aside>
+        		<a href="/">Home</a>
+        		<a href="/list.html">All Projects</a>
+        	</aside>
+    	</header>
+    	<aside>Sorry for the lack of pictures, I didn't think I wanted to share this project when I first started.</aside>
+    	<h2>Introduction</h2>
+    	<p>The ThinkPad T60 was my first computer.</p>
+    	<p>Actually that's a lie. My first computer was the ThinkPad T43p. The T60 was my sister's first computer.</p>
+    	<p>But they're both mine now</p>
+
+    	<h2>Why?</h2>
+    	<p>As with most of my projects, the question is not why, but rather why not?</p>
+
+    	<h2>Dead on Arrival</h2>
+    	<p>I dug both the T60 and T43p out of the basement, plugged them in, and tried turning them on.</p>
+    	<p>Nothing.</p>
+    	<p>Well not quite nothing, the T60's screen lit up for a brief moment, but the T43p showed no signs of life.</P>
+	<p>Time for troubleshooting.</p>
+
+	<h2>Spark in the Dark<h2>
+    	<p>Let me tell you how I came to waste approximately 2 months of my time. Since the T60 showed some signs of life, not to mention had the better specs, I decided to focus my efforts on it and leave the T43p for now.</p>
+    	<p>It turns out, the T60 was completely functional, except for the screen. Plugging the laptop into a VGA display showed that everything was working perfectly. I could even boot up a bit of minecraft! But a laptop isn't much good without a screen.</p>
+    	<p>If I looked closely enough, I noticed that the screen was actually working, just insanely dim. With the aid of  my phone flashlight, I might be able to make out 2 cm<sup>2</sup> of the screen, just barely.</p>
+    	<p>Interestingly, every time I tried booting the T60, the screen would flash for a moment during the startup, showing the screen properly displaying the boot screen. Clearly, something was wrong with the backlight, I just had to figure out what.</p>
+    	<p>It turns out that these old ThinkPads used CCFLs as backlights for the LCDs. Yes! Fluorecent backlights for LCDs! I hadn't properly realized how old these things were, from a time before LEDs were the default for LCD backlights. Maybe I'm just too young, but putting CCFLs in a laptop sounds crazy, no?</p>
+    	<p>Of course there's a few big reasons why we don't use Fluorecent backlights for our laptops anymore. They're fragile, power hungry, and need fancy balast circuits to work. But until we figured out LEDs, they were our best option.</p>
+
+    	<h3>Slightly Unhelpful Forum Adventure</h3>
+    	<p>Forums are crazy useful. There's so much information and knowlage to be found on small forums. However, sometimes, it leads you down the wrong path.</p>
+    	<p>That pesky flash. Every time I booted up the T60, the backlight would work perfectly, if only for a moment. Some digging on the <a href="https://forum.thinkpads.com">ThinkPad Forums</a> (this is no knock on them, lots of amazing and genuinely useful info there), and I came to the conclusion that my inverter was bad.</p>
+    	<p>~$10 and a month later, the replacement inverter I bought on eBay arrived. I opened the ThinkPad, popped it in, and nothing. Now it wouldn't even flash for a moment when I booted it up. I tried swapping back to the old inverter, but still no flash.</p>
+    	<p>Shit.</p>
+
+    	<h3>Slightly Helpful Forum Adventure</h3>
+    	<p>Some more digging on the <a href="https://forum.thinkpads.com">ThinkPad Forums</a> and I found a different answer, but sadly this one meant a more involved fix. Remember how I said that CCFLs are fragile? Yeah, that.</p>
+    	<p>Likely I would need to find a replacement screen, which at the time could cost over $150, which was quite a bit more than I was willing to spend on this project. But I kept thinking, maybe I can salvage a display from somewhere else?</p>
+
+    	<h2>Keep Yourself Alive</h2>
+	<p>Both the T60 and T43p I had were the 14 inch, 4:3 aspect ratio models, meaning their screens were exactly the same size. They even used the same interface for recieving the image data from the laptop. The mounting holes even line up perfectly. Maybe I could just swap the T43p display in, and it will just work?</p>
+	<p>They both used LVDS to send the image data to the LCD, but they weren't exactly the same. See, the laptop needs to know some information about the display in order to drive them correctly. If it doesn't know the resolution and timing, among other things, it might not be able to display correctly.</p>
+	<p>On the T43p, they used some additional pins on the motherboard side, and different cables would connect or disconnect certain pairs of pins. Some configurations meant you were using a high resolution display, and other configurations meant a low resolution one.</p>
+	<p>Pretty simple but worked fine, although it had a few drawbacks. The one I hear a bunch is that it required IT departments and the like to carry several variants of the cable and pick the right one if they needed to replace an LCD with one of a different resolution.</p>
+        <p>I've also heard that the real reason this was changed was to prevent the use of aftermarket, non-genuine LCD panels, but who knows? Not me. <s>We never lost control</s></p>
+        <p>For whatever reason you want to believe, when Lenovo took over the ThinkPad brand and made the T60, they added an EDID (Extended Display Identification Data) chip to the LCD panel. It's basically just a small I<sup>2</sup>C EEPROM on the LCD that the laptop can read and write to.</p>
+        <p>They use the EDID chip to store those parameters like the resolution and timing. Oh and also the manufacturer. Because of course.</p>
+	<p>Now, some people on the forum were saying that T43 models produced near the end of their run sometimes had these EDID chips on them, and that the chance of this was even higher with the T43p. Naturally, I just tried swapping the panel from the T43p into the T60, and it worked!</p>
+	<p>Kinda.</p>
+
+	<img src="1.jpg" alt="The ThinkPad Screen apears garbled, with the right side missing, and the top duplicated to the bottom." style="width:100%" loading="lazy">
+</article>
