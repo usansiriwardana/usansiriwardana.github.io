@@ -16,16 +16,14 @@
                 		<a href="/list.html">All Projects</a>
                 	</aside>
             	</header>
-            	<aside>Sorry for the lack of pictures, I didn't think I wanted to share this project when I first started.</aside>
-            	<h2>Introduction</h2>
+            	<hr>
+            	<aside>Last Updated: 2025/09/21</aside>
+            	<br>
+            	<aside>Sorry for the lack of pictures, I started this project before I started this website.</aside>
+            	<h2>Into the Fire</h2>
             	<p>The ThinkPad T60 was my first computer.</p>
             	<p>Actually that's a lie. My first computer was the ThinkPad T43p. The T60 was my sister's first computer.</p>
-            	<p>But they're both mine now</p>
-
-            	<h2>Why?</h2>
-            	<p>As with most of my projects, the question is not why, but rather why not?</p>
-
-            	<h2>Dead on Arrival</h2>
+            	<p>But she doesn't want it anymore, so they're both mine now.</p>
             	<p>I dug both the T60 and T43p out of the basement, plugged them in, and tried turning them on.</p>
             	<p>Nothing.</p>
             	<p>Well not quite nothing, the T60's screen lit up for a brief moment, but the T43p showed no signs of life.</P>
@@ -60,43 +58,46 @@
         	<p>Now, some people on the forum were saying that T43 models produced near the end of their run sometimes had these EDID chips on them, and that the chance of this was even higher with the T43p. Naturally, I just tried swapping the panel from the T43p into the T60, and it worked!</p>
         	<p>Kinda.</p>
 
-        	<img src="1.jpg" alt="The ThinkPad Screen apears garbled, with the right side missing, and the top duplicated to the bottom." style="width:100%" loading="lazy">
+        	<img src="1.jpg" alt="The ThinkPad Screen apears garbled, with the right side missing, and the top duplicated to the bottom." loading="lazy">
 
         	<p>If it isn't clear, the screen does display an image, but it's slightly off. The right side seems to be cut off, and some of the top appears to be duplicated on the bottom. I got unlucky, the T43p screen didn't have an EDID chip, and the laptop was using it's default settings.</p>
-        	<p>But we don't give up here. Sure, the T43p panel doesn't have an EDID chip on it, but now I just to happen to have a dead panel to harvest an EDID chip from.</p>
+
+		<h2>Don't Give Up</h2>
+
+        	<p>Sure, the T43p panel doesn't have an EDID chip on it, but now I just to happen to have a dead panel to harvest an EDID chip from.</p>
         	<p>After checking IC serial numbers, I desoldered the EDID chip from the T60 display.</p>
 
-        	<img src="2.jpg" alt="The EDID EEPROM chip on a circuit board next to the PCB footprint for it. A toothbrush is also in frame." style="width:100%" loading="lazy">
+        	<img src="2.jpg" alt="The EDID EEPROM chip on a circuit board next to the PCB footprint for it. A toothbrush is also in frame." loading="lazy">
 
 		<p>Toothbrush for scale. (Why a toothbrush? Because a banana wouldn't fit in the shot.)</p>
 		<p>The T43p display even had the footprint for the EEPROM, it just wasn't populated, so adding the salvaged chip was a simple task, even using a cheap $10 soldering iron.</p>
 		<p>With the new EDID chip installed, I tried powering it on and...</p>
 		<p>No change. Or so I thought...</p>
 
-        	<img src="3.jpg" alt="The ThinkPad screen is garbled exactly like before, but shows a terminal in Linux Mint. The terminal shows the i2cdump command displaying a series of hexadecimal bytes." style="width:100%" loading="lazy">
+        	<img src="3.jpg" alt="The ThinkPad screen is garbled exactly like before, but shows a terminal in Linux Mint. The terminal shows the i2cdump command displaying a series of hexadecimal bytes." loading="lazy">
 
         	<p>The display worked enough to let me boot Linux (Mint) from a USB drive, and run some diagnostics. I tried reading the data from the EEPROM using the i2cdump command, and it actually worked! The laptop was able to correctly read the EDID parameters from the EEPROM. So why did the display still look exactly the same?</p>
         	<p>My best guess is that the old T60 display was a low resolution one, and that also, if the laptop can't read the EDID chip, it defaults to the parameters for a low resolution display. So while the laptop can read the data, it doesn't actually do anything different in this case. But since the display from the T43p is a high resolution display, the parameters are wrong now.</p>
-        	<p>Thankfully, the EE in EEPROM stands for Electronically Errassable. and thanks to the excelent <a href="https://github.com/bsdhw/EDID">EDID Repository</a>, I knew what bytes I needed to Program to the Read Only Memory</p>
-        	<p>For whatever reason the <a href="https://github.com/bulletmark/edid-rw">edid-rw<a> utility that people on the forums seemed to be using didn't want to run on my machine, but I found that <a href="https://github.com/linuxhw/write-edid">write-edid<a>, a simple shell script that writes the data one byte at a time using the i2cset worked just fine.</p>
+        	<p>Thankfully, the EE in EEPROM stands for Electrically Erasable. and thanks to the excelent <a href="https://github.com/bsdhw/EDID">EDID Repository</a>, I knew what bytes I needed to Program to the Read Only Memory</p>
+        	<p>For whatever reason the <a href="https://github.com/bulletmark/edid-rw">edid-rw<a> utility that people on the forums seemed to be using didn't want to run on my machine, but I found that <a href="https://github.com/linuxhw/write-edid">write-edid<a>, a simple shell script that writes the data one byte at a time using the i2cset command worked just fine.</p>
 
         	<p>With the new EDID parameters written, I tried rebooting the T60, and it worked perfectly! I also finally put the machine back together.</p>
 
-        	<img src="4.jpg" alt="The ThinkPad screen shows the Linux Mint desktop, with no issues." style="width:100%" loading="lazy">
+        	<img src="4.jpg" alt="The ThinkPad screen shows the Linux Mint desktop, with no issues." loading="lazy">
 
         	<p>It even worked booting the old Windows XP install from the hard drive!</p>
 
-        	<img src="5.jpg" alt="The ThinkPad screen shows the Windows XP loading screen, with no issues." style="width:100%" loading="lazy">
+        	<img src="5.jpg" alt="The ThinkPad screen shows the Windows XP loading screen, with no issues." loading="lazy">
 
-        	<h2>Finishing Touches</h2>
+        	<h2>All I Can Do</h2>
+
+        	<p>Oh nothing, nothing, nothing else.</p>
 
         	<p>The T60 is technically functional now, but it's not perfect. Some of the plastic has cracked, but with a little super glue, and buying a replacement keyboard bezel from eBay for $15, it's good enough for now.</p>
-        	<p>The Project is done! For now at least.</p>
 
         	<h2>What Happens Now?</h2>
 
         	<p>Now? <s>Lets go practice medicine</s> Well, one of the big reasons I wanted to revive this old ThinkPad is because (at the time) it was one of very few laptops supported by the Cannoeboot project. Since it doesn't have the Intel ME on it, if I combined Cannoeboot with an 100% Free Software OS, I could have a machine with about as much of the software involved being libre as possible.</p>
         	<p>I've already gotten my hands on some upgrades for this thing as well, so you can expect a part 2 at some point.</p>
-
         </article>
 </body>
