@@ -7,6 +7,15 @@
 <title>ThinkPad T60: Part 2 - Usan Siriwardana</title>
 
 <link rel="stylesheet" href="/style.css">
+<style>
+table {
+	width: 100%;
+}
+td, th {
+	border: 1px solid #dddddd;
+	text-align: left;
+}
+</style>
 <body>
         <article>
             	<header>
@@ -17,37 +26,48 @@
                 	</aside>
             	</header>
             	<hr>
-            	<aside>Last Updated: 2025/09/23</aside>
+            	<aside>Last Updated: 2025/09/25</aside>
             	<br>
-            	<h2></h2>
-            	<p></p>
+            	<h2>Out of the Box</h2>
+            	<p>Compared to working on modern laptops, this thing is a dream to work on. Detailed first-party instructions, easilly accessible screws, they even have labels for the screws moulded into the bottom plate! Working on the T60 makes me really miss this era of computers, where they were meant to be fixable and upgradeable.</p>
 
+		<img src="6.jpg" alt="The ThinkPad with the Palm Rest, Keyboard, Keyboard Bezel, and Cooling System removed, exposing the motherboard." loading="lazy">
+
+            	<p>With the Palm Rest, Keyboard, Keyboard Bezel, and Cooling System removed, every part I needed to replace at this time was easily accessible. I replaced the CPU (Yes! This <em>laptop</em> has an upgradeable CPU! Why can't we have nice things anymore?), RAM, and installed a new SSD in just a few minutes.</p>
+
+		<img src="7.jpg" alt="The ThinkPad with the Palm Rest, Keyboard, Keyboard Bezel, and Cooling System removed, exposing the motherboard. The CPU, RAM, and Hard Drive have been swapped." loading="lazy">
+
+		<p>About that RAM upgrade. This machine was from a time when the memory controller was still on chipset, rather than current machines which normally place it on the CPU die. And while it does support 64-bit CPUs (Like the T7600 I used), the chipset is still 32-bit, and since it doesn't support PAE, the system is limited to 4GB of RAM.</p>
+            	<p>To add insult to injury, the system also uses memory mapped IO to reach the serial or paralell ports when placed on a dock, further limiting the amount of RAM accessible by the operating system to only 3GB, which is exactly what the machine had before I began working on it.</p>
+            	<p>But that's not to say that my upgrade here is completely useless. By using 2 sticks of 2GB, the chipset could map the 3GB to each stick evenly, allowing all 3GB to run in dual-channel, helping to improve the RAM access speed. Whether or not the chipset or BIOS actually works like this, is a question I have yet to find a proper answer to.</p>
             	<h2>And Test, Test, and Test Some More</h2>
             	<p>I tested Timed linux Kernel Compilation, to get something I could use to compare the system pre-upgrade and post-upgrade.</p>
-            	<p>I wanted to test HPL as well (so I could compare to the Top500 list), but I couldn't get it running on the 32 bit system.</p>
             	<p>Pre-upgrade, the laptop has an Intel Core 2 Duo T2400 CPU, and 3 GB of RAM (1+2 configuration).</p>
-            	<p>These tests were done running a live boot of Linux Mint LMDE 6, 32 bit for the pre-upgrade, 32 bit and 64 bit for the post upgrade. Tests were done using Linux 6.18.6, using make -j2, and the default .config output from make nconfig. The source files were stored on the same USB drive for all tests.</p>
+		<p>These tests were done running a live boot of Linux Mint LMDE 6, 32 bit. Tests were done using Linux 6.18.6, using <code>make -j2</code>, and the config from <code>make tinyconfig</code>. The source files were stored on the same USB drive for all tests. Each test was done 4 times, ignoring the first run.</p>
+            	<p>Yes that USB drive was probably a significant bottleneck. Why didn't I use the SSD? Why Indeed.</p>
             	<table>
                 	<tr>
                     		<th>Configuration</th>
-                    		<th>Run 1</th>
-                    		<th>Run 2</th>
-                    		<th>Run 3</th>
-                    		<th>Average</th>
+                    		<th>Run 1(s)</th>
+                    		<th>Run 2(s)</th>
+                    		<th>Run 3(s)</th>
+                    		<th>Average(s)</th>
                 	</tr>
                 	<tr>
-                    		<td></td>
-                    		<td></td>
-                    		<td></td>
-                    		<td></td>
-                    		<td></td>
+                    		<td>T2400, 1+2GB</td>
+                    		<td>337.688</td>
+                    		<td>337.325</td>
+                    		<td>335.783</td>
+                    		<td>336.932</td>
                 	</tr>
                 	<tr>
-                    		<td></td>
-                    		<td></td>
-                    		<td></td>
-                    		<td></td>
-                    		<td></td>
+                    		<td>T7600, 2+2GB</td>
+                    		<td>246.731</td>
+                    		<td>242.696</td>
+                    		<td>241.350</td>
+                    		<td>243.592</td>
                 	</tr>
+            	</table>
+            	<p>So the new system is about 1.38x faster than before. Is this because of the CPU, the RAM, or even the fresh thermal paste? I have no idea, and I don't care either. The system is noticably faster now, so that's good enough for me.</p>
         </article>
 </body>
